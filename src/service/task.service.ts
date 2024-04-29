@@ -21,6 +21,22 @@ export async function createTask(input: TaskInput) {
   }
 }
 
+export async function getTasks(query: FilterQuery<TaskDocument>) {
+  const metricsLabels = {
+    operation: "getTasks",
+  };
+
+  const timer = databaseResponseTimeHistogram.startTimer();
+  try {
+    const result = await TaskModel.find(query).lean();
+    timer({ ...metricsLabels, success: "true" });
+    return result;
+  } catch (e) {
+    timer({ ...metricsLabels, success: "false" });
+    throw e;
+  }
+}
+
 export async function findTask(
   query: FilterQuery<TaskDocument>,
   options: QueryOptions = { lean: true }

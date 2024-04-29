@@ -6,7 +6,9 @@ ADD yarn.lock /tmp/yarn.lock
 
 RUN rm -rf build
 
-RUN cd /tmp && yarn install
+WORKDIR /tmp
+
+RUN yarn install
 
 ADD ./ /src
 

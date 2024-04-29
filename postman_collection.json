@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "d3a34203-6dac-480e-8aac-0dce44241f83",
-		"name": "REST API Tutorial",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "d09d3a84-a2cc-4708-bbf4-dd2b0a3ee80a",
+		"name": "Todoist API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30151921"
 	},
 	"item": [
 		{
@@ -11,6 +12,9 @@
 				{
 					"name": "Create User",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -52,6 +56,9 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -184,17 +191,17 @@
 			]
 		},
 		{
-			"name": "Product",
+			"name": "Task",
 			"item": [
 				{
-					"name": "Create Product",
+					"name": "Create Task",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"productId\", jsonData.productId);",
+									"postman.setEnvironmentVariable(\"taskId\", jsonData.productId);",
 									"",
 									"",
 									"const newAccessToken = responseHeaders['x-access-token']",
@@ -229,7 +236,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Canon EOS 1500D DSLR Camera with 18-55mm Lens\",\n    \"description\": \"Designed for first-time DSLR owners who want impressive results straight out of the box, capture those magic moments no matter your level with the EOS 1500D. With easy to use automatic shooting modes, large 24.1 MP sensor, Canon Camera Connect app integration and built-in feature guide, EOS 1500D is always ready to go.\",\n    \"price\": 879.99,\n    \"image\": \"https://i.imgur.com/QlRphfQ.jpg\"\n}",
+							"raw": "{\n    \"title\": \"Canon EOS 1500D DSLR Camera with 18-55mm Lens\",\n    \"description\": \"Designed for first-time DSLR owners who want impressive results straight out of the box, capture those magic moments no matter your level with the EOS 1500D. With easy to use automatic shooting modes, large 24.1 MP sensor, Canon Camera Connect app integration and built-in feature guide, EOS 1500D is always ready to go.\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -237,20 +244,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{endpoint}}/api/products",
+							"raw": "{{endpoint}}/api/tasks",
 							"host": [
 								"{{endpoint}}"
 							],
 							"path": [
 								"api",
-								"products"
+								"tasks"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get Product",
+					"name": "Get Task",
 					"event": [
 						{
 							"listen": "test",
@@ -278,21 +285,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{endpoint}}/api/products/{{productId}}",
+							"raw": "{{endpoint}}/api/tasks/{{taskId}}",
 							"host": [
 								"{{endpoint}}"
 							],
 							"path": [
 								"api",
-								"products",
-								"{{productId}}"
+								"tasks",
+								"{{taskId}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Update Product",
+					"name": "Update Task",
 					"event": [
 						{
 							"listen": "test",
@@ -338,21 +345,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{endpoint}}/api/products/{{productId}}",
+							"raw": "{{endpoint}}/api/tasks/{{taskId}}",
 							"host": [
 								"{{endpoint}}"
 							],
 							"path": [
 								"api",
-								"products",
-								"{{productId}}"
+								"tasks",
+								"{{taskId}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete Product",
+					"name": "Delete Task",
 					"event": [
 						{
 							"listen": "test",
@@ -398,14 +405,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{endpoint}}/api/products/{{productId}}",
+							"raw": "{{endpoint}}/api/tasks/{{taskId}}",
 							"host": [
 								"{{endpoint}}"
 							],
 							"path": [
 								"api",
-								"products",
-								"{{productId}}"
+								"tasks",
+								"{{taskId}}"
 							]
 						}
 					},
@@ -479,7 +486,7 @@
 		},
 		{
 			"key": "name",
-			"value": "Jane Doe"
+			"value": "Aziz Abbassi"
 		},
 		{
 			"key": "accessToken",
@@ -494,7 +501,7 @@
 			"value": "http://localhost:1337"
 		},
 		{
-			"key": "productId",
+			"key": "taskId",
 			"value": "<productId will be set when you create a session>"
 		}
 	]

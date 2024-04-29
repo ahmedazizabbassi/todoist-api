@@ -1,8 +1,8 @@
-import { get } from "lodash";
 import config from "config";
+import { get } from "lodash";
 import { FilterQuery, UpdateQuery } from "mongoose";
 import SessionModel, { SessionDocument } from "../models/session.model";
-import { verifyJwt, signJwt } from "../utils/jwt.utils";
+import { signJwt, verifyJwt } from "../utils/jwt.utils";
 import { findUser } from "./user.service";
 
 export async function createSession(userId: string, userAgent: string) {
@@ -25,9 +25,9 @@ export async function updateSession(
 export async function reIssueAccessToken({
   refreshToken,
 }: {
-  refreshToken: string;
+  refreshToken: string | string[];
 }) {
-  const { decoded } = verifyJwt(refreshToken, "refreshTokenPublicKey");
+  const { decoded } = verifyJwt(typeof refreshToken === "string" ? refreshToken : refreshToken[0], "refreshTokenPublicKey");
 
   if (!decoded || !get(decoded, "session")) return false;
 

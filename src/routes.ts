@@ -1,25 +1,25 @@
 import { Express, Request, Response } from "express";
 import {
-  createProductHandler,
-  getProductHandler,
-  updateProductHandler,
-  deleteProductHandler,
-} from "./controller/product.controller";
-import {
   createUserSessionHandler,
-  getUserSessionsHandler,
   deleteSessionHandler,
+  getUserSessionsHandler,
 } from "./controller/session.controller";
+import {
+  createTaskHandler,
+  deleteTaskHandler,
+  getTaskHandler,
+  updateTaskHandler,
+} from "./controller/task.controller";
 import { createUserHandler } from "./controller/user.controller";
 import requireUser from "./middleware/requireUser";
 import validateResource from "./middleware/validateResource";
-import {
-  createProductSchema,
-  deleteProductSchema,
-  getProductSchema,
-  updateProductSchema,
-} from "./schema/product.schema";
 import { createSessionSchema } from "./schema/session.schema";
+import {
+  createTaskSchema,
+  deleteTaskSchema,
+  getTaskSchema,
+  updateTaskSchema,
+} from "./schema/task.schema";
 import { createUserSchema } from "./schema/user.schema";
 
 function routes(app: Express) {
@@ -120,53 +120,55 @@ function routes(app: Express) {
 
   /**
    * @openapi
-   * '/api/products':
+   * '/api/tasks':
    *  post:
    *     tags:
-   *     - Products
-   *     summary: Create a new product
+   *     - Tasks
+   *     summary: Create a new task
    *     requestBody:
    *       required: true
    *       content:
    *         application/json:
    *           schema:
-   *             $ref: '#/components/schema/Product'
+   *             $ref: '#/components/schema/Task'
    *     responses:
    *       200:
-   *         description: Product created
+   *         description: Task created
    *         content:
    *          application/json:
    *           schema:
-   *              $ref: '#/components/schema/productResponse'
+   *              $ref: '#/components/schema/taskResponse'
    *           example:
    *             "user": "642a0de05f16e6dad68efdad"
-   *             "title": "Canon EOS 1500D DSLR Camera with 18-55mm Lens"
-   *             "description": "Designed for first-time DSLR owners who want impressive results straight out of the box, capture those magic moments no matter your level with the EOS 1500D. With easy to use automatic shooting modes, large 24.1 MP sensor, Canon Camera Connect app integration and built-in feature guide, EOS 1500D is always ready to go."
-   *             "price": 879.99
-   *             "image": "https://i.imgur.com/QlRphfQ.jpg"
+   *             "title": "Refactor code for better performance"
+   *             "description": "We have array's maps and filters that we don't need. We have to get rid of them. Also, we have to refactor the code to use the new library that we have installed."
+   *             "dueDate": "2023-04-03T00:25:32.189Z"
+   *             "priority": 4
+   *             "completed": false
+   *             "hasReminder": false
    *             "_id": "642a1cfcc1bec76d8a2e7ac2"
-   *             "productId": "product_xxqm8z3eho"
+   *             "taskId": "task_xxqm8z3eho"
    *             "createdAt": "2023-04-03T00:25:32.189Z"
    *             "updatedAt": "2023-04-03T00:25:32.189Z"
    *             "__v": 0
    */
   app.post(
-    "/api/products",
-    [requireUser, validateResource(createProductSchema)],
-    createProductHandler
+    "/api/tasks",
+    [requireUser, validateResource(createTaskSchema)],
+    createTaskHandler
   );
 
   /**
    * @openapi
-   * '/api/products/{productId}':
+   * '/api/tasks/{taskId}':
    *  get:
    *     tags:
-   *     - Products
-   *     summary: Get a single product by the productId
+   *     - Tasks
+   *     summary: Get a single task by the taskId
    *     parameters:
-   *      - name: productId
+   *      - name: taskId
    *        in: path
-   *        description: The id of the product
+   *        description: The id of the task
    *        required: true
    *     responses:
    *       200:
@@ -174,68 +176,68 @@ function routes(app: Express) {
    *         content:
    *          application/json:
    *           schema:
-   *              $ref: '#/components/schema/productResponse'
+   *              $ref: '#/components/schema/taskResponse'
    *       404:
-   *         description: Product not found
+   *         description: Task not found
    *  put:
    *     tags:
-   *     - Products
-   *     summary: Update a single product
+   *     - Tasks
+   *     summary: Update a single task
    *     parameters:
-   *      - name: productId
+   *      - name: taskId
    *        in: path
-   *        description: The id of the product
+   *        description: The id of the task
    *        required: true
    *     requestBody:
    *       required: true
    *       content:
    *         application/json:
    *           schema:
-   *             $ref: '#/components/schema/Product'
+   *             $ref: '#/components/schema/Task'
    *     responses:
    *       200:
    *         description: Success
    *         content:
    *          application/json:
    *           schema:
-   *              $ref: '#/components/schema/productResponse'
+   *              $ref: '#/components/schema/taskResponse'
    *       403:
    *         description: Forbidden
    *       404:
-   *         description: Product not found
+   *         description: Task not found
    *  delete:
    *     tags:
-   *     - Products
-   *     summary: Delete a single product
+   *     - Tasks
+   *     summary: Delete a single task
    *     parameters:
-   *      - name: productId
+   *      - name: taskId
    *        in: path
-   *        description: The id of the product
+   *        description: The id of the task
    *        required: true
    *     responses:
-   *       200:
-   *         description: Product deleted
+   *       204:
+   *         description: Task deleted
    *       403:
    *         description: Forbidden
    *       404:
-   *         description: Product not found
+   *         description: Task not found
    */
   app.put(
-    "/api/products/:productId",
-    [requireUser, validateResource(updateProductSchema)],
-    updateProductHandler
+    "/api/tasks/:taskId",
+    [requireUser, validateResource(updateTaskSchema)],
+    updateTaskHandler
   );
 
   app.get(
-    "/api/products/:productId",
-    validateResource(getProductSchema),
-    getProductHandler
+    "/api/tasks/:taskId",
+    validateResource(getTaskSchema),
+    getTaskHandler
   );
 
   app.delete(
-    "/api/products/:productId",
-    [requireUser, validateResource(deleteProductSchema)],
-    deleteProductHandler
+    "/api/tasks/:taskId",
+    [requireUser, validateResource(deleteTaskSchema)],
+    deleteTaskHandler
   );
 }
 

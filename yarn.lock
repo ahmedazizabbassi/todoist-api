@@ -2536,45 +2536,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rest-api-tutorial-updated@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "rest-api-tutorial-updated@workspace:."
-  dependencies:
-    "@types/bcrypt": "npm:^5.0.0"
-    "@types/body-parser": "npm:^1.19.1"
-    "@types/config": "npm:^0.0.39"
-    "@types/cors": "npm:^2.8.12"
-    "@types/express": "npm:^4.17.13"
-    "@types/jsonwebtoken": "npm:^8.5.5"
-    "@types/lodash": "npm:^4.14.175"
-    "@types/nanoid": "npm:^3.0.0"
-    "@types/node": "npm:^16.11.1"
-    "@types/pino": "npm:^6.3.11"
-    "@types/response-time": "npm:^2.3.5"
-    "@types/swagger-jsdoc": "npm:^6.0.1"
-    "@types/swagger-ui-express": "npm:^4.1.3"
-    bcrypt: "npm:^5.0.1"
-    config: "npm:^3.3.6"
-    cors: "npm:^2.8.5"
-    dayjs: "npm:^1.10.7"
-    dotenv: "npm:^10.0.0"
-    express: "npm:^4.17.1"
-    jsonwebtoken: "npm:^8.5.1"
-    lodash: "npm:^4.17.21"
-    mongoose: "npm:^6.0.11"
-    nanoid: "npm:^3.1.30"
-    pino: "npm:^7.0.2"
-    pino-pretty: "npm:^7.1.0"
-    prom-client: "npm:^14.0.0"
-    response-time: "npm:^2.3.2"
-    swagger-jsdoc: "npm:^6.1.0"
-    swagger-ui-express: "npm:^4.1.6"
-    ts-node-dev: "npm:^1.1.8"
-    typescript: "npm:^4.4.4"
-    zod: "npm:^3.9.8"
-  languageName: unknown
-  linkType: soft
-
 "retry@npm:^0.12.0":
   version: 0.12.0
   resolution: "retry@npm:0.12.0"
@@ -3084,6 +3045,45 @@ __metadata:
   checksum: 487988b0a19c654ff3e1961b87f471702e708fa8a8dd02a298ef16da7206692e8552a0250e8b3e8759270f62e9d8314616f6da274734d3b558b1fc7b7724e892
   languageName: node
   linkType: hard
+
+"todoist-api@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "todoist-api@workspace:."
+  dependencies:
+    "@types/bcrypt": "npm:^5.0.0"
+    "@types/body-parser": "npm:^1.19.1"
+    "@types/config": "npm:^0.0.39"
+    "@types/cors": "npm:^2.8.12"
+    "@types/express": "npm:^4.17.13"
+    "@types/jsonwebtoken": "npm:^8.5.5"
+    "@types/lodash": "npm:^4.14.175"
+    "@types/nanoid": "npm:^3.0.0"
+    "@types/node": "npm:^16.11.1"
+    "@types/pino": "npm:^6.3.11"
+    "@types/response-time": "npm:^2.3.5"
+    "@types/swagger-jsdoc": "npm:^6.0.1"
+    "@types/swagger-ui-express": "npm:^4.1.3"
+    bcrypt: "npm:^5.0.1"
+    config: "npm:^3.3.6"
+    cors: "npm:^2.8.5"
+    dayjs: "npm:^1.10.7"
+    dotenv: "npm:^10.0.0"
+    express: "npm:^4.17.1"
+    jsonwebtoken: "npm:^8.5.1"
+    lodash: "npm:^4.17.21"
+    mongoose: "npm:^6.0.11"
+    nanoid: "npm:^3.1.30"
+    pino: "npm:^7.0.2"
+    pino-pretty: "npm:^7.1.0"
+    prom-client: "npm:^14.0.0"
+    response-time: "npm:^2.3.2"
+    swagger-jsdoc: "npm:^6.1.0"
+    swagger-ui-express: "npm:^4.1.6"
+    ts-node-dev: "npm:^1.1.8"
+    typescript: "npm:^4.4.4"
+    zod: "npm:^3.9.8"
+  languageName: unknown
+  linkType: soft
 
 "toidentifier@npm:1.0.0":
   version: 1.0.0

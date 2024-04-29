@@ -1,13 +1,13 @@
+import { isAfter, isValid } from "date-fns";
 import { Request, Response } from "express";
-import {
-  CreateTaskInput,
-  UpdateTaskInput,
-} from "../schema/task.schema";
+import { stat } from "fs";
+import { CreateTaskInput, UpdateTaskInput } from "../schema/task.schema";
 import {
   createTask,
   deleteTask,
   findAndUpdateTask,
   findTask,
+  getTasks,
 } from "../service/task.service";
 
 export async function createTaskHandler(
@@ -47,6 +47,28 @@ export async function updateTaskHandler(
   });
 
   return res.send(updatedTask);
+}
+
+export async function getAllTasksHandler(req: Request, res: Response) {
+  let { startDate, endDate } = req.query;
+
+  const userId = res.locals.user._id;
+
+  const tasks =
+    startDate &&
+    endDate &&
+    typeof startDate === "string" &&
+    typeof endDate === "string" &&
+    isValid(new Date(startDate)) &&
+    isValid(new Date(endDate)) &&
+    isAfter(endDate, startDate)
+      ? await getTasks({
+          user: userId,
+          dueDate: { $gte: new Date(startDate), $lte: new Date(endDate) },
+        })
+      : await getTasks({ user: userId });
+
+  return res.send(tasks);
 }
 
 export async function getTaskHandler(

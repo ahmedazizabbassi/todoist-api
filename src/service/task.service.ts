@@ -1,18 +1,18 @@
 import { FilterQuery, QueryOptions, UpdateQuery } from "mongoose";
-import ProductModel, {
-  ProductDocument,
-  ProductInput,
-} from "../models/product.model";
+import TaskModel, {
+  TaskDocument,
+  TaskInput,
+} from "../models/task.model";
 import { databaseResponseTimeHistogram } from "../utils/metrics";
 
-export async function createProduct(input: ProductInput) {
+export async function createTask(input: TaskInput) {
   const metricsLabels = {
-    operation: "createProduct",
+    operation: "createTask",
   };
 
   const timer = databaseResponseTimeHistogram.startTimer();
   try {
-    const result = await ProductModel.create(input);
+    const result = await TaskModel.create(input);
     timer({ ...metricsLabels, success: "true" });
     return result;
   } catch (e) {
@@ -21,17 +21,17 @@ export async function createProduct(input: ProductInput) {
   }
 }
 
-export async function findProduct(
-  query: FilterQuery<ProductDocument>,
+export async function findTask(
+  query: FilterQuery<TaskDocument>,
   options: QueryOptions = { lean: true }
 ) {
   const metricsLabels = {
-    operation: "findProduct",
+    operation: "findTask",
   };
 
   const timer = databaseResponseTimeHistogram.startTimer();
   try {
-    const result = await ProductModel.findOne(query, {}, options);
+    const result = await TaskModel.findOne(query, {}, options);
     timer({ ...metricsLabels, success: "true" });
     return result;
   } catch (e) {
@@ -41,14 +41,14 @@ export async function findProduct(
   }
 }
 
-export async function findAndUpdateProduct(
-  query: FilterQuery<ProductDocument>,
-  update: UpdateQuery<ProductDocument>,
+export async function findAndUpdateTask(
+  query: FilterQuery<TaskDocument>,
+  update: UpdateQuery<TaskDocument>,
   options: QueryOptions
 ) {
-  return ProductModel.findOneAndUpdate(query, update, options);
+  return TaskModel.findOneAndUpdate(query, update, options);
 }
 
-export async function deleteProduct(query: FilterQuery<ProductDocument>) {
-  return ProductModel.deleteOne(query);
+export async function deleteTask(query: FilterQuery<TaskDocument>) {
+  return TaskModel.deleteOne(query);
 }

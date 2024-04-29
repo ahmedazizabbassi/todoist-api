@@ -12,8 +12,6 @@ export function signJwt(
     "base64"
   ).toString("ascii");
 
-  log.info(`Signing JWT with ${keyName}: ${signingKey}`);
-
   return jwt.sign(object, signingKey, {
     ...options,
     algorithm: "RS256",
@@ -36,7 +34,6 @@ export function verifyJwt(
       decoded,
     };
   } catch (e: any) {
-    console.error(e);
     log.error(e.message);
     return {
       valid: false,

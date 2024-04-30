@@ -51,7 +51,7 @@ const payload = {
       required_error: "Title is required",
     }),
     priority: number().int().gte(1).lte(4).optional(),
-    dueDate: date().min(new Date()),
+    dueDate: date().min(new Date()).optional(),
   }),
 };
 

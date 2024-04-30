@@ -38,9 +38,6 @@ import { TypeOf, object, string } from "zod";
 
 const params = {
   params: object({
-    userId: string({
-      required_error: "user is required",
-    }),
   }),
 };
 

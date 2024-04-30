@@ -7,9 +7,8 @@ export async function getNotifsHandler(
   req: Request<{}, {}, ReadNotifInput>,
   res: Response
 ) {
-  console.log(req.body)
   try {
-    const notifs = await getNotifs(req.body);
+    const notifs = await getNotifs({user: res.locals.user._id});
     return res.send(notifs);
   } catch (e: any) {
     logger.error(e);

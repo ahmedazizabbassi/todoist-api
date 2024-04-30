@@ -285,16 +285,11 @@ function routes(app: Express) {
 
   /**
    * @openapi
-   * '/api/notifs/{userId}':
+   * '/api/notifs':
    *  get:
    *    tags:
    *    - Notifications
    *    summary: Get users notifications
-   *    parameters:
-   *      - name: userId
-   *        in: path
-   *        description: The id of the user
-   *        required: true
    *    responses:
    *      200:
    *        description: Get all notifications for current user

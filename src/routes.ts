@@ -13,6 +13,7 @@ import {
   updateTaskHandler,
 } from "./controller/task.controller";
 import { createUserHandler } from "./controller/user.controller";
+import payloadFromStringToDate from "./middleware/payloadFromStringToDate";
 import requireUser from "./middleware/requireUser";
 import validateResource from "./middleware/validateResource";
 import { createSessionSchema } from "./schema/session.schema";
@@ -195,7 +196,7 @@ function routes(app: Express) {
    */
   app.post(
     "/api/tasks",
-    [requireUser, validateResource(createTaskSchema)],
+    [requireUser, payloadFromStringToDate, validateResource(createTaskSchema)],
     createTaskHandler
   );
   app.get("/api/tasks", requireUser, getAllTasksHandler);

@@ -1,4 +1,5 @@
 version: '3.7'
+
 services:
   rest-api:
     container_name: rest-api
@@ -6,21 +7,21 @@ services:
     environment:
       - NODE_ENV=production
     build:
-        context: ./ 
-
-  caddy:
-    image: caddy/caddy:2.2.1-alpine
-    container_name: caddy-service
-    restart: unless-stopped
+      context: .
+      dockerfile: Dockerfile 
     ports:
-      - "80:80"
-      - "443:443"
+      - 8880:1337  
     volumes:
-    - $PWD/Caddyfile:/etc/caddy/Caddyfile
-    - $PWD/site:/srv
-    - caddy_data:/data
-    - caddy_config:/config
+      - ./:/app 
+      - logs:/app/logs  
+    networks:
+      - api-network
+
+networks:
+  api-network:
+    driver: bridge
 
 volumes:
-  caddy_data:
-  caddy_config:
+  logs:
+    driver: local
+

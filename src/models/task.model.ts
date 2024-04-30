@@ -15,6 +15,7 @@ export interface TaskInput {
 }
 
 export interface TaskDocument extends TaskInput, mongoose.Document {
+  taskId: string;
   createdAt: Date;
   updatedAt: Date;
 }

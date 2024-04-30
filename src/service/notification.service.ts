@@ -12,12 +12,12 @@ export const notifJob = new CronJob(
   "* * * * *", // cronTime
   async function () {
     const tasks = await getTasks({ hasReminder: true });
-    const x = (tasks as TaskDocument[]).map(async (task: TaskDocument) =>
-      (!await getAsingleNotif({ task: task._id }))
+    const notifCreationPromises = (tasks as TaskDocument[]).map(async (task: TaskDocument) =>
+      (!await getAsingleNotif({ task: task._id })) && task.hasReminder
         ? createNotif({ user: task.user, task: task._id, isRead: false })
         : null
     );
-    await Promise.all(x);
+    await Promise.all(notifCreationPromises);
   }, // onTick
   null, // onComplete
   false, // start

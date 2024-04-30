@@ -16,6 +16,7 @@ export interface NotifDocument extends NotifInput, mongoose.Document {
 const notifSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    task: { type: mongoose.Schema.Types.ObjectId, ref: "Task" },
     isRead: { type: Boolean, default: false },
   },
   {

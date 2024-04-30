@@ -16,6 +16,7 @@ export async function createTaskHandler(
   const userId = res.locals.user._id;
 
   const body = req.body;
+  body.dueDate = body.dueDate ? new Date(body.dueDate) : undefined;
 
   const task = await createTask({ ...body, user: userId });
 

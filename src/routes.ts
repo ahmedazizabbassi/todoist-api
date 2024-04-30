@@ -311,7 +311,7 @@ function routes(app: Express) {
    *      403:
    *        description: Forbidden
    */
-  app.get("/api/notifs/:userId", requireUser, getNotifsHandler);
+  app.get("/api/notifs", requireUser, getNotifsHandler);
 }
 
 export default routes;

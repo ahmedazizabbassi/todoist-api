@@ -31,7 +31,7 @@ const taskSchema = new mongoose.Schema(
     title: { type: String, required: true },
     description: { type: String, required: true },
     dueDate: { type: Date },
-    priority: { type: Number, default: 4 },
+    priority: { type: 1 | 2 | 3 | 4, default: 4 },
     completed: { type: Boolean, default: false },
     hasReminder: { type: Boolean, default: false },
   },

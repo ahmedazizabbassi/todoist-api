@@ -9,7 +9,7 @@ export interface TaskInput {
   title: string;
   description?: string;
   dueDate?: Date;
-  priority?: 1 | 2 | 3 | 4;
+  priority?: number;
   completed?: boolean;
   hasReminder?: boolean;
 }

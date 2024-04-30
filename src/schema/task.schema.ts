@@ -1,4 +1,4 @@
-import { TypeOf, number, object, string } from "zod";
+import { TypeOf, date, number, object, string } from "zod";
 
 /**
  * @openapi
@@ -50,7 +50,8 @@ const payload = {
     title: string({
       required_error: "Title is required",
     }),
-    priority: number().int().gte(1).lte(4),
+    priority: number().int().gte(1).lte(4).optional(),
+    dueDate: date().min(new Date()),
   }),
 };
 

@@ -13,11 +13,6 @@ Note 2: Make sure you add .env to your .gitignore before pushing any changes to 
 * I'm getting a JWT malformed error: https://youtu.be/FzKrfwplips
 * Managing environment variables: https://youtu.be/gfyQzeBlLTI
 
-## Who is this tutorial for?
-
-* Junior to mid-level developers
-* Anyone interested in building REST APIs with TypeScript
-
 ## What you will need
 
 * A running instance of MongoDB
@@ -30,7 +25,6 @@ Note 2: Make sure you add .env to your .gitignore before pushing any changes to 
 ## What next?
 
 * Testing the API with Jest
-* Build a React.js user interface
 * Add Prometheus metrics to the API
 * Deploy the API with Caddy & Docker
 * Add Google OAuth
@@ -90,20 +84,7 @@ Note 2: Make sure you add .env to your .gitignore before pushing any changes to 
 
 * Docker (image)
 * docker-compose (container)
-* Caddy - Web server
-* DigitalOcean
+* Render
+* .Tech domain
 
 Note: You will need Docker installed locally if you want to test your Docker configutation
-
-## Let's keep in touch
-
-- [Subscribe on YouTube](https://www.youtube.com/TomDoesTech)
-- [Discord](https://discord.gg/4ae2Esm6P7)
-- [Twitter](https://twitter.com/tomdoes_tech)
-- [TikTok](https://www.tiktok.com/@tomdoestech)
-- [Facebook](https://www.facebook.com/tomdoestech)
-- [Instagram](https://www.instagram.com/tomdoestech)
-
-[Buy me a Coffee](https://www.buymeacoffee.com/tomn)
-
-[Sign up to DigitalOcean 💖](https://m.do.co/c/1b74cb8c56f4)

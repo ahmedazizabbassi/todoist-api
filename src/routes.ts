@@ -1,4 +1,5 @@
 import { Express, Request, Response } from "express";
+import { getNotifsHandler } from "./controller/notification.controller";
 import {
   createUserSessionHandler,
   deleteSessionHandler,
@@ -167,7 +168,7 @@ function routes(app: Express) {
    *              [
    *                {
    *                 "user": "642a0de05f16e6dad68efdad",
-   *                 "title": "Refactor code for better performance",  
+   *                 "title": "Refactor code for better performance",
    *                 "description": "We have array's maps and filters that we don't need. We have to get rid of them. Also, we have to refactor the code to use the new library that we have installed.",
    *                 "dueDate": "2023-04-03T00:25:32.189Z",
    *                 "priority": 4,
@@ -188,7 +189,7 @@ function routes(app: Express) {
    *                  "_id": "642a1cfcc1bec76d8a2e7ac2",
    *                "taskId": "task_xxqm8z3eho",
    *               "createdAt": "2023-04-03T00:25:32.189Z",
-   *             "updatedAt": "2023-04-03T00:25:32.189Z",          
+   *             "updatedAt": "2023-04-03T00:25:32.189Z",
    * }
    *             ]
    */
@@ -280,6 +281,41 @@ function routes(app: Express) {
     [requireUser, validateResource(deleteTaskSchema)],
     deleteTaskHandler
   );
+
+  /**
+   * @openapi
+   * '/api/notifs/{userId}':
+   *  get:
+   *    tags:
+   *    - Notifications
+   *    summary: Get users notifications
+   *    parameters:
+   *      - name: userId
+   *        in: path
+   *        description: The id of the user
+   *        required: true
+   *    responses:
+   *      200:
+   *        description: Get all notifications for current user
+   *        content:
+   *          application/json:
+   *            schema:
+   *              $ref: '#/components/schema/notifResponse'
+   *              example:
+   *                [
+   *                  {
+   *                    user: "642a0de05f16e6dad68efdad",
+   *                    task: "642a1cfcc1bec76d8a2e7ac2",
+   *                    isRead: false,
+   *                    _id: "642a1cfcc1bec76d8a2e7ac2",
+   *                    createdAt: "2023-04-03T00:25:32.189Z",
+   *                    updatedAt: "2023-04-03T00:25:32.189Z",
+   *                  }
+   *                ]
+   *      403:
+   *        description: Forbidden
+   */
+  app.get("/api/notifs/:userId", requireUser, getNotifsHandler);
 }
 
 export default routes;

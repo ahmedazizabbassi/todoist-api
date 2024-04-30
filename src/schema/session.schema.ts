@@ -37,10 +37,10 @@ import { object, string } from "zod";
  *       properties:
  *         email:
  *           type: string
- *           default: jane.doe@example.com
+ *           default: admin@ahmedaziz.tech
  *         password:
  *           type: string
- *           default: stringPassword123
+ *           default: AhmedAzizPassword123
  *     CreateSessionResponse:
  *       type: object
  *       required:

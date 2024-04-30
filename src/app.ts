@@ -1,12 +1,14 @@
-import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import config from "config";
+
+import express, { Request, Response } from "express";
 import responseTime from "response-time";
+import deserializeUser from "./middleware/deserializeUser";
+import routes from "./routes";
+import { notifJob } from "./service/notification.service";
 import connect from "./utils/connect";
 import logger from "./utils/logger";
-import routes from "./routes";
-import deserializeUser from "./middleware/deserializeUser";
 import { restResponseTimeHistogram, startMetricsServer } from "./utils/metrics";
 import swaggerDocs from "./utils/swagger";
 
@@ -43,4 +45,6 @@ app.listen(port, async () => {
   startMetricsServer();
 
   swaggerDocs(app, port);
+
+  notifJob.start();
 });
